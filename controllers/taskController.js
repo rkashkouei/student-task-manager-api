@@ -8,6 +8,18 @@ exports.getTasks = (req, res) => {
 exports.createTask = (req, res) => {
     const { title } = req.body;
 
+    if (!title || title.trim() === '') {
+        return res.status(400).json({ message: 'Title is required' });
+    }
+
+    const existingTask = tasks.find(
+    t => t.title.toLowerCase() === title.toLowerCase()
+);
+
+if (existingTask) {
+    return res.status(400).json({ message: 'Task already exists' });
+}
+
     const newTask = {
         id: id++,
         title: title,
