@@ -27,6 +27,7 @@ node index.js
 |---|---|---|
 | GET | / | Test API |
 | GET | /tasks | Get all tasks |
+| GET | /tasks/:id | Get task id |
 | POST | /tasks | Create task |
 | PUT | /tasks/:id | Update task |
 | DELETE | /tasks/:id | Delete task |
