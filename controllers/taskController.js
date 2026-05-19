@@ -5,6 +5,18 @@ exports.getTasks = (req, res) => {
     res.json(tasks);
 };
 
+exports.getTaskById = (req, res) => {
+    const taskId = parseInt(req.params.id);
+
+    const task = tasks.find(t => t.id === taskId);
+
+    if (!task) {
+        return res.status(404).json({ message: 'Task not found' });
+    }
+
+    res.json(task);
+};
+
 exports.createTask = (req, res) => {
     const { title } = req.body;
 
