@@ -35,7 +35,8 @@ if (existingTask) {
     const newTask = {
         id: id++,
         title: title,
-        completed: false
+        completed: false,
+        createdAt: new Date().toISOString()
     };
 
     tasks.push(newTask);
