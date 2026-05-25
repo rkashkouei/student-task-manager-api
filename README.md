@@ -4,10 +4,14 @@ A simple backend API built with Node.js and Express.
 
 ## Features
 
-- Create a task
+- Create a new task
 - Get all tasks
+- Get a single task by ID
 - Update a task
 - Delete a task
+- Validate empty task titles
+- Prevent duplicate task titles
+- Automatically add creation timestamp to each task
 
 ## Technologies
 
@@ -27,7 +31,17 @@ node index.js
 |---|---|---|
 | GET | / | Test API |
 | GET | /tasks | Get all tasks |
-| GET | /tasks/:id | Get task id |
-| POST | /tasks | Create task |
-| PUT | /tasks/:id | Update task |
-| DELETE | /tasks/:id | Delete task |
+| GET | /tasks/:id | Get a single task by ID |
+| POST | /tasks | Create a new task |
+| PUT | /tasks/:id | Update a task |
+| DELETE | /tasks/:id | Delete a task |
+
+## Example Task Response
+
+```json
+{
+  "id": 1,
+  "title": "Study Node.js",
+  "completed": false,
+  "createdAt": "2026-05-25T14:30:10.123Z"
+}
