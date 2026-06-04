@@ -36,7 +36,8 @@ if (existingTask) {
         id: id++,
         title: title,
         completed: false,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        updatedAt: null
     };
 
     tasks.push(newTask);
@@ -62,6 +63,7 @@ exports.updateTask = (req, res) => {
         task.completed = completed;
     }
 
+    task.updatedAt = new Date().toISOString();
     res.json(task);
 };
 

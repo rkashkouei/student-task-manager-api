@@ -12,6 +12,7 @@ A simple backend API built with Node.js and Express.
 - Validate empty task titles
 - Prevent duplicate task titles
 - Automatically add creation timestamp to each task
+- Track task update timestamps
 
 ## Technologies
 
@@ -38,10 +39,14 @@ node index.js
 
 ## Example Task Response
 
+## Example Task Response
+
 ```json
 {
   "id": 1,
   "title": "Study Node.js",
   "completed": false,
-  "createdAt": "2026-05-25T14:30:10.123Z"
+  "createdAt": "2026-05-25T14:30:10.123Z",
+  "updatedAt": null
 }
+```
