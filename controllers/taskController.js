@@ -18,8 +18,11 @@ exports.getTaskById = (req, res) => {
 };
 
 exports.createTask = (req, res) => {
-    const { title } = req.body;
-
+    const { title, priority } = req.body;
+    const validPriorities = ['low', 'medium', 'high'];
+    if (priority !== undefined && !validPriorities.includes(priority)) {
+        return res.status(400).json({ message: "Priority must be low, medium, or high" });
+    }
     if (!title || title.trim() === '') {
         return res.status(400).json({ message: 'Title is required' });
     }
@@ -31,10 +34,11 @@ exports.createTask = (req, res) => {
 if (existingTask) {
     return res.status(400).json({ message: 'Task already exists' });
 }
-
+    console.log(req.body);
     const newTask = {
         id: id++,
         title: title,
+        priority: priority || "medium",
         completed: false,
         createdAt: new Date().toISOString(),
         updatedAt: null
@@ -47,7 +51,17 @@ if (existingTask) {
 
 exports.updateTask = (req, res) => {
     const taskId = parseInt(req.params.id);
-    const { title, completed } = req.body;
+    const { title, completed, priority } = req.body;
+    const validPriorities = ["low", "medium", "high"];
+
+    if (
+    priority !== undefined &&
+    !validPriorities.includes(priority)
+    ) {
+    return res.status(400).json({
+        message: "Priority must be low, medium, or high"
+    });
+    }
 
     const task = tasks.find(t => t.id === taskId);
 
@@ -63,6 +77,9 @@ exports.updateTask = (req, res) => {
         task.completed = completed;
     }
 
+    if (priority !== undefined) {
+    task.priority = priority;
+    }
     task.updatedAt = new Date().toISOString();
     res.json(task);
 };
