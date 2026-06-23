@@ -13,6 +13,8 @@ A simple backend API built with Node.js and Express.
 - Prevent duplicate task titles
 - Automatically add creation timestamp to each task
 - Track task update timestamps
+- Task priorities (low, medium, high)
+- Input validation
 
 ## Technologies
 
